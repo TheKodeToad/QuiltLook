@@ -7,7 +7,7 @@ import java.io.File;
 public class QuiltLookConfiguration {
 
 	private Perspective perspective = Perspective.THIRD_PERSON;
-	private ActivationMode activationMode;
+	private ActivationMode activationMode = ActivationMode.HOLD;
 
 	public Perspective getPerspective() {
 		return perspective;
