@@ -1,10 +1,12 @@
 package io.github.thekodetoad.quiltlook.utils;
 
-import io.github.thekodetoad.quiltlook.QuiltLookMod;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 
-import java.util.Optional;
+import java.lang.reflect.InvocationTargetException;
+import java.util.function.Consumer;
+import java.util.function.IntConsumer;
+import java.util.function.Supplier;
 
 public class Utils {
 
@@ -13,4 +15,15 @@ public class Utils {
 				: MinecraftClient.getInstance().cameraEntity;
 	}
 
+	public static <T extends Enum<T>> Consumer<Integer> cycleConsumer(Supplier<T> get, Consumer<T> set, T[] values) {
+		return (amount) -> {
+			int ordinal = get.get().ordinal() + amount;
+
+			if(ordinal >= values.length) {
+				ordinal = 0;
+			}
+
+			set.accept(values[ordinal]);
+		};
+	}
 }

@@ -1,20 +1,26 @@
 package io.github.thekodetoad.quiltlook;
 
-import io.github.thekodetoad.quiltlook.config.QuiltLookConfiguration;
+import io.github.thekodetoad.quiltlook.config.ModConfig;
 import io.github.thekodetoad.quiltlook.utils.Utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.Perspective;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 
+import java.io.File;
+
 public class QuiltLookMod implements ClientModInitializer {
+
+	public static final Logger LOGGER = LogManager.getLogger();
 
 	private static QuiltLookMod instance;
 
 	@NotNull
 	private final MinecraftClient client = MinecraftClient.getInstance();
-	private QuiltLookConfiguration config = new QuiltLookConfiguration();
+	private ModConfig config = ModConfig.load(new File(client.runDirectory, "config/quiltlook.json"));
 
 	/** the activation state */
 	private boolean active;
@@ -32,7 +38,7 @@ public class QuiltLookMod implements ClientModInitializer {
 		ModEvents.register();
 	}
 
-	public QuiltLookConfiguration getConfig() {
+	public ModConfig getConfig() {
 		return config;
 	}
 
@@ -46,8 +52,10 @@ public class QuiltLookMod implements ClientModInitializer {
 			if(active) {
 				yaw = Utils.safeCameraEntity().getYaw();
 				pitch = Utils.safeCameraEntity().getPitch();
-				initialPerspective = client.options.getPerspective();
-				client.options.setPerspective(config.getPerspective().getGameOption());
+				if(config.getPerspective().getGameOption() != null) {
+					initialPerspective = client.options.getPerspective();
+					client.options.setPerspective(config.getPerspective().getGameOption());
+				}
 			}
 			else {
 				yaw = pitch = 0;

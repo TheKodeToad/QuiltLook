@@ -12,9 +12,10 @@ import static net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper.regi
 
 public class ModKeys {
 
-	private static final String KEY_CATEGORY = "quiltlook.keys.title";
+	private static final String KEY_BASE = "quiltlook.keys.";
+	private static final String KEY_CATEGORY = KEY_BASE + "title";
 
-	public static final KeyBind ACTIVATE = new StickyKeyBind("quiltlook.keys.activate", KEY_V_CODE, KEY_CATEGORY,
+	public static final KeyBind ACTIVATE = new StickyKeyBind(KEY_BASE + "activate", KEY_V_CODE, KEY_CATEGORY,
 			() -> QuiltLookMod.getInstance().getConfig().getActivationMode() == ActivationMode.TOGGLE);
 
 	public static void register() {

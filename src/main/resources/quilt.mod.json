@@ -18,7 +18,8 @@
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-				"client_init": "io.github.thekodetoad.quiltlook.QuiltLookMod"
+				"client_init": "io.github.thekodetoad.quiltlook.QuiltLookMod",
+				"modmenu": "io.github.thekodetoad.quiltlook.config.screen.ModMenuImpl"
 		},
 		"depends": [
 			{

@@ -2,5 +2,18 @@
   "quiltlook.keys.title": "QuiltLook",
   "quiltlook.keys.activate": "Activate",
   "quiltlook.keys.hold": "Activate (hold)",
-  "quiltlook.keys.toggle": "Activate (toggle)"
+  "quiltlook.keys.toggle": "Activate (toggle)",
+  "quiltlook.config.title": "Configure QuiltLook",
+  "quiltlook.config.perspective": "Perspective: %s",
+  "quiltlook.config.perspective.name": "Perspective",
+  "quiltlook.config.perspective.NONE": "Keep",
+  "quiltlook.config.perspective.FIRST_PERSON": "1st Person",
+  "quiltlook.config.perspective.THIRD_PERSON_BACK": "3rd Person",
+  "quiltlook.config.perspective.THIRD_PERSON_FRONT": "3rd Front",
+  "quiltlook.config.perspective.desc": "When set to anything other than \"Keep\", the perspective to use when active.",
+  "quiltlook.config.activation_mode": "Activation: %s",
+  "quiltlook.config.activation_mode.name": "Activation Mode",
+  "quiltlook.config.activation_mode.HOLD": "Hold",
+  "quiltlook.config.activation_mode.TOGGLE": "Toggle",
+  "quiltlook.config.activation_mode.desc": "The mode of activation; \"Hold\" to hold the key, \"Toggle\" to press it to turn it on and of."
 }

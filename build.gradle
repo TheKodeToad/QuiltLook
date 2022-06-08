@@ -3,6 +3,12 @@ plugins {
 	alias(libs.plugins.quilt.loom)
 }
 
+repositories {
+	maven { url = "https://maven.gegy.dev" }
+	maven { url = "https://maven.terraformersmc.com/releases" }
+	maven { url = "https://jitpack.io" }
+}
+
 archivesBaseName = project.archives_base_name
 version = project.version
 group = project.maven_group
@@ -14,6 +20,8 @@ dependencies {
 	}
 	modImplementation libs.quilt.loader
 	modImplementation libs.quilted.fabric.api
+	modImplementation(libs.spruceui) { transitive false }
+	modImplementation(libs.modmenu) { transitive false }
 }
 
 processResources {
