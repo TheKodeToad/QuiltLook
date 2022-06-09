@@ -2,6 +2,8 @@ package io.github.thekodetoad.quiltlook.config;
 
 import net.minecraft.client.resource.language.I18n;
 
+// used because Minecraft's perspective enum may have different names on different versions,
+// or even different names on different mappings depending on the proguard settings.
 public enum Perspective {
 	NONE(null),
 	FIRST_PERSON(net.minecraft.client.option.Perspective.FIRST_PERSON),
@@ -21,4 +23,5 @@ public enum Perspective {
 	public net.minecraft.client.option.Perspective getGameOption() {
 		return gameOption;
 	}
+
 }

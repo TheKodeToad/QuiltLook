@@ -21,7 +21,25 @@ public class ModConfig {
 	private Perspective perspective = Perspective.THIRD_PERSON_BACK;
 	@Expose
 	private ActivationMode activationMode = ActivationMode.HOLD;
-	private final File file;
+	@Expose
+	private boolean invertY;
+	@Expose
+	private boolean invertX;
+	@Expose
+	private boolean modifySensitivity;
+	@Expose
+	private float sensitivity = 1;
+	@Expose
+	private XRestrictionMode xRestrictionMode = XRestrictionMode.IN_FIRST_PERSON;
+	@Expose
+	private int xRestriction = 200;
+	@Expose
+	private boolean restrictY = true;
+	private boolean reverseView;
+
+	private File file;
+
+	private ModConfig() {}
 
 	private ModConfig(File file) {
 		this.file = file;
@@ -32,6 +50,7 @@ public class ModConfig {
 
 		try {
 			config = GSON.fromJson(FileUtils.readFileToString(file, StandardCharsets.UTF_8), ModConfig.class);
+			config.file = file;
 		}
 		catch(IOException error) {
 			config = new ModConfig(file);
@@ -68,7 +87,90 @@ public class ModConfig {
 		this.activationMode = activationMode;
 	}
 
+	public boolean getInvertX() {
+		return invertX;
+	}
+
+	public void setInvertX(boolean invertX) {
+		this.invertX = invertX;
+	}
+
+	public boolean getInvertY() {
+		return invertY;
+	}
+
+	public void setInvertY(boolean invertY) {
+		this.invertY = invertY;
+	}
+
+	public boolean getModifySensitivity() {
+		return modifySensitivity;
+	}
+
+	public void setModifySensitivity(boolean modifySensitivity) {
+		this.modifySensitivity = modifySensitivity;
+	}
+
+	public float getSensitivity() {
+		return sensitivity;
+	}
+
+	public void setSensitivity(float sensitivity) {
+		this.sensitivity = sensitivity;
+	}
+
+	public XRestrictionMode getXRestrictionMode() {
+		return xRestrictionMode;
+	}
+
+	public void setXRestrictionMode(XRestrictionMode mode) {
+		xRestrictionMode = mode;
+	}
+
+	public int getXRestriction() {
+		return xRestriction;
+	}
+
+	public void setXRestriction(int xRestriction) {
+		this.xRestriction = xRestriction;
+	}
+
+	public boolean getRestrictY() {
+		return restrictY;
+	}
+
+	public void setRestrictY(boolean restrictY) {
+		this.restrictY = restrictY;
+	}
+
+	public boolean getReverseView() {
+		return reverseView;
+	}
+
+	public void setReverseView(boolean reverseView) {
+		this.reverseView = reverseView;
+	}
+
+	// used for SpruceDoubleOption
+
+	public double getSensitivityDouble() {
+		return sensitivity;
+	}
+
+	public void setSensitivityDouble(double sensitivity) {
+		this.sensitivity = (float) sensitivity;
+	}
+
+	public double getXRestrictionDouble() {
+		return xRestriction;
+	}
+
+	public void setXRestrictionDouble(double xRestriction) {
+		this.xRestriction = (int) xRestriction;
+	}
+
 	public void save() throws IOException {
+		// ignore the result because it will cause another error anyway.
 		file.getParentFile().mkdirs();
 		FileUtils.writeStringToFile(file, GSON.toJson(this),
 				StandardCharsets.UTF_8);

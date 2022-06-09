@@ -2,7 +2,7 @@
 	"schema_version": 1,
 	"quilt_loader": {
 		"group": "io.github.thekodetoad.quiltlook",
-		"id": "quitlook",
+		"id": "quiltlook",
 		"version": "${version}",
 		"metadata": {
 			"name": "QuiltLook",
@@ -19,7 +19,7 @@
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
 				"client_init": "io.github.thekodetoad.quiltlook.QuiltLookMod",
-				"modmenu": "io.github.thekodetoad.quiltlook.config.screen.ModMenuImpl"
+				"modmenu": "io.github.thekodetoad.quiltlook.config.screen.ModMenuConfigScreen"
 		},
 		"depends": [
 			{
