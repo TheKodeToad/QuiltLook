@@ -21,6 +21,7 @@ dependencies {
 	modImplementation libs.quilt.loader
 	modImplementation libs.quilted.fabric.api
 	modImplementation(libs.spruceui) { transitive false }
+	include libs.spruceui
 	modImplementation(libs.modmenu) { transitive false }
 }
 
