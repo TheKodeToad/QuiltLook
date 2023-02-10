@@ -6,7 +6,7 @@
 	"quiltlook.keys.toggle": "Activate (toggle)",
 	"quiltlook.config.title": "Configure QuiltLook",
 	"quiltlook.config.behaviour": "Behaviour",
-	"quiltlook.config.control": "Controls",
+	"quiltlook.config.controls": "Controls",
 	"quiltlook.config.perspective": "Perspective",
 	"quiltlook.config.perspective.NONE": "Keep",
 	"quiltlook.config.perspective.FIRST_PERSON": "1st Person",
