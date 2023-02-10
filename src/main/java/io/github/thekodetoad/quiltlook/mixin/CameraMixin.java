@@ -12,7 +12,7 @@ public class CameraMixin {
 
 	@Redirect(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;getYaw(F)F"))
 	public float getYaw(Entity instance, float tickDelta) {
-		if(QuiltLookMod.getInstance().isActive()) {
+		if (QuiltLookMod.getInstance().isActive()) {
 			return QuiltLookMod.getInstance().getYaw();
 		}
 
@@ -21,7 +21,7 @@ public class CameraMixin {
 
 	@Redirect(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;getPitch(F)F"))
 	public float getPitch(Entity instance, float tickDelta) {
-		if(QuiltLookMod.getInstance().isActive()) {
+		if (QuiltLookMod.getInstance().isActive()) {
 			return QuiltLookMod.getInstance().getPitch();
 		}
 

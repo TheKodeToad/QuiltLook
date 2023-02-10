@@ -4,9 +4,10 @@ plugins {
 }
 
 repositories {
-	maven { url = "https://maven.gegy.dev" }
-	maven { url = "https://maven.terraformersmc.com/releases" }
-	maven { url = "https://jitpack.io" }
+	maven { url "https://maven.gegy.dev" }
+	maven { url "https://maven.terraformersmc.com/releases" }
+	maven { url "https://jitpack.io" }
+	maven { url "https://maven.isxander.dev/releases" }
 }
 
 archivesBaseName = project.archives_base_name
@@ -15,13 +16,11 @@ group = project.maven_group
 
 dependencies {
 	minecraft libs.minecraft
-	mappings loom.layered {
-		addLayer quiltMappings.mappings("org.quiltmc:quilt-mappings:${libs.versions.quilt.mappings.get()}:v2")
-	}
+	mappings variantOf(libs.quilt.mappings) { classifier 'intermediary-v2' }
 	modImplementation libs.quilt.loader
 	modImplementation libs.quilted.fabric.api
-	modImplementation(libs.spruceui) { transitive false }
-	include libs.spruceui
+	modImplementation(libs.yacl) { transitive false }
+	include libs.yacl
 	modImplementation(libs.modmenu) { transitive false }
 }
 

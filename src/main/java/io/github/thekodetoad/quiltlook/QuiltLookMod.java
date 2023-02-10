@@ -1,11 +1,6 @@
 package io.github.thekodetoad.quiltlook;
 
-import io.github.thekodetoad.quiltlook.config.ModConfig;
-import io.github.thekodetoad.quiltlook.utils.Utils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.Perspective;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import java.io.File;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +8,10 @@ import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 
-import java.io.File;
+import io.github.thekodetoad.quiltlook.config.ModConfig;
+import io.github.thekodetoad.quiltlook.utils.Utils;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.option.Perspective;
 
 public class QuiltLookMod implements ClientModInitializer {
 
@@ -51,26 +49,25 @@ public class QuiltLookMod implements ClientModInitializer {
 	}
 
 	public void setActive(boolean active) {
-		if(this.active != active) {
+		if (this.active != active) {
 			this.active = active;
-			if(active) {
+			if (active) {
 				yaw = Utils.safeCameraEntity().getYaw();
 				pitch = Utils.safeCameraEntity().getPitch();
 
-				if(config.getReverseView()) {
+				if (config.getReverseView()) {
 					yaw += 180;
 					pitch = -pitch;
 				}
 
-				if(config.getPerspective().getGameOption() != null) {
+				if (config.getPerspective().getGameOption() != null) {
 					initialPerspective = client.options.getPerspective();
 					client.options.setPerspective(config.getPerspective().getGameOption());
 				}
-			}
-			else {
+			} else {
 				yaw = pitch = 0;
 
-				if(initialPerspective != null) {
+				if (initialPerspective != null) {
 					client.options.setPerspective(initialPerspective);
 					initialPerspective = null;
 				}
@@ -92,33 +89,30 @@ public class QuiltLookMod implements ClientModInitializer {
 		x *= DEFAULT_MULIPLIER;
 		y *= DEFAULT_MULIPLIER;
 
-		if(config.getInvertX()) {
+		if (config.getInvertX()) {
 			x = -x;
 		}
-		if(config.getInvertY()) {
+		if (config.getInvertY()) {
 			y = -y;
 		}
 
-		if(config.getModifySensitivity()) {
-			x *= config.getSensitivity();
-			y *= config.getSensitivity();
-		}
+		x *= config.getSensitivity();
+		y *= config.getSensitivity();
 
 		this.yaw = clampYaw(yaw + x);
 		this.pitch = clampPitch(pitch + y);
 	}
 
 	private float clampYaw(float yaw) {
-		if(config.getXRestrictionMode().shouldRestrict()) {
+		if (config.getXRestrictionMode().shouldRestrict()) {
 			float startingYaw = Utils.safeCameraEntity().getYaw();
 			float restriction = config.getXRestriction();
 			float min = startingYaw - (restriction / 2);
 			float max = startingYaw + (restriction / 2);
 
-			if(yaw < min) {
+			if (yaw < min) {
 				return min;
-			}
-			else if(yaw > max) {
+			} else if (yaw > max) {
 				return max;
 			}
 		}
@@ -127,11 +121,10 @@ public class QuiltLookMod implements ClientModInitializer {
 	}
 
 	private float clampPitch(float pitch) {
-		if(config.getRestrictY()) {
-			if(pitch > 90) {
+		if (config.getRestrictY()) {
+			if (pitch > 90) {
 				return 90;
-			}
-			else if(pitch < -90) {
+			} else if (pitch < -90) {
 				return -90;
 			}
 		}

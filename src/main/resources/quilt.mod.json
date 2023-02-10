@@ -8,7 +8,7 @@
 			"name": "QuiltLook",
 			"description": "Configurable Freelook mod on Quilt.",
 			"contributors": {
-				"TheKodeToad": "Owner"
+				"TheKodeToad": "Author"
 			},
 			"contact": {
 				"homepage": "https://example.com/",
@@ -18,8 +18,8 @@
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-				"client_init": "io.github.thekodetoad.quiltlook.QuiltLookMod",
-				"modmenu": "io.github.thekodetoad.quiltlook.config.screen.ModMenuConfigScreen"
+			"client_init": "io.github.thekodetoad.quiltlook.QuiltLookMod",
+			"modmenu": "io.github.thekodetoad.quiltlook.config.screen.ModMenuConfigScreen"
 		},
 		"depends": [
 			{

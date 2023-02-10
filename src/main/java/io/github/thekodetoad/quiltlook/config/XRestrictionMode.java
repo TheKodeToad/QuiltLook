@@ -1,15 +1,15 @@
 package io.github.thekodetoad.quiltlook.config;
 
+import dev.isxander.yacl.api.NameableEnum;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.resource.language.I18n;
+import net.minecraft.text.Text;
 
-public enum XRestrictionMode {
-	NEVER,
-	IN_FIRST_PERSON,
-	ALWAYS;
+public enum XRestrictionMode implements NameableEnum {
+	NEVER, IN_FIRST_PERSON, ALWAYS;
 
-	public String getName() {
-		return I18n.translate("quiltlook.config.restrict_x." + name());
+	@Override
+	public Text getDisplayName() {
+		return Text.translatable("quiltlook.config.restrict_x." + name());
 	}
 
 	public boolean shouldRestrict() {

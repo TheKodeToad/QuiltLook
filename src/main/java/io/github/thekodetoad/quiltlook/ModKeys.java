@@ -1,14 +1,11 @@
 package io.github.thekodetoad.quiltlook;
 
+import static com.mojang.blaze3d.platform.InputUtil.KEY_V_CODE;
+import static net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper.registerKeyBinding;
+
 import io.github.thekodetoad.quiltlook.config.ActivationMode;
 import net.minecraft.client.option.KeyBind;
 import net.minecraft.client.option.StickyKeyBind;
-
-import java.util.function.BooleanSupplier;
-import java.util.function.Predicate;
-
-import static com.mojang.blaze3d.platform.InputUtil.*;
-import static net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper.registerKeyBinding;
 
 public class ModKeys {
 

@@ -12,7 +12,7 @@ public class EntityMixin {
 
 	@Inject(method = "changeLookDirection", at = @At("HEAD"), cancellable = true)
 	public void interceptMovement(double cursorDeltaX, double cursorDeltaY, CallbackInfo callback) {
-		if(QuiltLookMod.getInstance().isActive()) {
+		if (QuiltLookMod.getInstance().isActive()) {
 			QuiltLookMod.getInstance().onMouseMovement((float) cursorDeltaX, (float) cursorDeltaY);
 			callback.cancel();
 		}

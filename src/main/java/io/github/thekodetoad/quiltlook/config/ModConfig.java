@@ -12,9 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ModConfig {
 
-	private static final Gson GSON = new GsonBuilder()
-			.excludeFieldsWithoutExposeAnnotation()
-			.setPrettyPrinting()
+	private static final Gson GSON = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting()
 			.create();
 
 	@Expose
@@ -25,8 +23,6 @@ public class ModConfig {
 	private boolean invertY;
 	@Expose
 	private boolean invertX;
-	@Expose
-	private boolean modifySensitivity;
 	@Expose
 	private float sensitivity = 1;
 	@Expose
@@ -39,7 +35,8 @@ public class ModConfig {
 
 	private File file;
 
-	private ModConfig() {}
+	private ModConfig() {
+	}
 
 	private ModConfig(File file) {
 		this.file = file;
@@ -51,18 +48,15 @@ public class ModConfig {
 		try {
 			config = GSON.fromJson(FileUtils.readFileToString(file, StandardCharsets.UTF_8), ModConfig.class);
 			config.file = file;
-		}
-		catch(IOException error) {
+		} catch (IOException error) {
 			config = new ModConfig(file);
 
-			if(file.exists()) {
+			if (file.exists()) {
 				QuiltLookMod.LOGGER.error("Could not load config", error);
-			}
-			else {
+			} else {
 				try {
 					config.save();
-				}
-				catch(IOException saveError) {
+				} catch (IOException saveError) {
 					QuiltLookMod.LOGGER.error("Could not create config", saveError);
 				}
 			}
@@ -101,14 +95,6 @@ public class ModConfig {
 
 	public void setInvertY(boolean invertY) {
 		this.invertY = invertY;
-	}
-
-	public boolean getModifySensitivity() {
-		return modifySensitivity;
-	}
-
-	public void setModifySensitivity(boolean modifySensitivity) {
-		this.modifySensitivity = modifySensitivity;
 	}
 
 	public float getSensitivity() {
@@ -151,29 +137,10 @@ public class ModConfig {
 		this.reverseView = reverseView;
 	}
 
-	// used for SpruceDoubleOption
-
-	public double getSensitivityDouble() {
-		return sensitivity;
-	}
-
-	public void setSensitivityDouble(double sensitivity) {
-		this.sensitivity = (float) sensitivity;
-	}
-
-	public double getXRestrictionDouble() {
-		return xRestriction;
-	}
-
-	public void setXRestrictionDouble(double xRestriction) {
-		this.xRestriction = (int) xRestriction;
-	}
-
 	public void save() throws IOException {
 		// ignore the result because it will cause another error anyway.
 		file.getParentFile().mkdirs();
-		FileUtils.writeStringToFile(file, GSON.toJson(this),
-				StandardCharsets.UTF_8);
+		FileUtils.writeStringToFile(file, GSON.toJson(this), StandardCharsets.UTF_8);
 	}
 
 }
